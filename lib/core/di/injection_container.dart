@@ -13,6 +13,8 @@ import '../../features/cart/presentation/cubit/cart_cubit.dart';
 import '../../features/product/presentation/cubit/product_cubit.dart';
 import '../../features/profile/presentation/cubit/profile_cubit.dart';
 import '../../features/checkout/presentation/cubit/checkout_cubit.dart';
+import '../../features/splash/presentation/cubit/splash_cubit.dart';
+import '../../features/onboarding/presentation/cubit/onboarding_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -33,6 +35,8 @@ Future<void> initDependencies() async {
   sl.registerFactory<ProductCubit>(() => ProductCubit());
   sl.registerFactory<ProfileCubit>(() => ProfileCubit());
   sl.registerFactory<CheckoutCubit>(() => CheckoutCubit());
+  sl.registerFactory<SplashCubit>(() => SplashCubit(sl()));
+  sl.registerFactory<OnboardingCubit>(() => OnboardingCubit(sl()));
 }
 
 void _initAuth() {

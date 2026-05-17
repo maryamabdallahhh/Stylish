@@ -1,100 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
+import '../../features/cart/presentation/cubit/cart_cubit.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/checkout/presentation/pages/checkout_page.dart';
+import '../../features/home/presentation/cubit/home_cubit.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import '../../features/onboarding/presentation/pages/onboarding_page.dart';
+import '../../features/product/presentation/cubit/product_cubit.dart';
 import '../../features/product/presentation/pages/product_detail_page.dart';
 import '../../features/product/presentation/pages/product_list_page.dart';
+import '../../features/profile/presentation/cubit/profile_cubit.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/splash/presentation/cubit/splash_cubit.dart';
+import '../../features/splash/presentation/pages/splash_page.dart';
+import '../di/injection_container.dart';
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.login,
+  initialLocation: RouteNames.splash,
   debugLogDiagnostics: true,
   routes: [
-    // ── Auth ───────────────────────────────────────────────────────────────────
+    // ── Splash ────────────────────────────────────────────────────────────────
+    GoRoute(
+      path: RouteNames.splash,
+      name: 'splash',
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<SplashCubit>()..init(),
+        child: const SplashPage(),
+      ),
+    ),
+
+    // ── Onboarding ────────────────────────────────────────────────────────────
+    GoRoute(
+      path: RouteNames.onboarding,
+      name: 'onboarding',
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<OnboardingCubit>(),
+        child: const OnboardingPage(),
+      ),
+    ),
+
+    // ── Auth ──────────────────────────────────────────────────────────────────
     GoRoute(
       path: RouteNames.login,
       name: 'login',
-      builder: (context, state) => const LoginPage(),
+      builder: (_, __) => const LoginPage(),
     ),
     GoRoute(
       path: RouteNames.register,
       name: 'register',
-      builder: (context, state) => const RegisterPage(),
+      builder: (_, __) => const RegisterPage(),
     ),
 
     // ── Main shell with bottom nav ─────────────────────────────────────────────
     StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) => _AppShell(navigationShell: navigationShell),
+      builder: (_, __, navigationShell) => _AppShell(navigationShell: navigationShell),
       branches: [
-        // Home
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: RouteNames.home,
               name: 'home',
-              builder: (context, state) => const HomePage(),
+              builder: (_, __) => BlocProvider(
+                create: (_) => sl<HomeCubit>()..loadHome(),
+                child: const HomePage(),
+              ),
               routes: [
                 GoRoute(
                   path: 'products',
                   name: 'product-list',
-                  builder: (context, state) => const ProductListPage(),
+                  builder: (_, __) => BlocProvider(
+                    create: (_) => sl<ProductCubit>()..loadProducts(),
+                    child: const ProductListPage(),
+                  ),
                 ),
                 GoRoute(
                   path: 'products/:id',
                   name: 'product-detail',
-                  builder: (context, state) => ProductDetailPage(
-                    productId: state.pathParameters['id']!,
+                  builder: (_, state) => BlocProvider(
+                    create: (_) => sl<ProductCubit>(),
+                    child: ProductDetailPage(productId: state.pathParameters['id']!),
                   ),
                 ),
               ],
             ),
           ],
         ),
-        // Cart
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: RouteNames.cart,
               name: 'cart',
-              builder: (context, state) => const CartPage(),
+              builder: (_, __) => BlocProvider(
+                create: (_) => sl<CartCubit>()..loadCart(),
+                child: const CartPage(),
+              ),
               routes: [
                 GoRoute(
                   path: '/checkout',
                   name: 'checkout',
-                  builder: (context, state) => const CheckoutPage(),
+                  builder: (_, __) => const CheckoutPage(),
                 ),
               ],
             ),
           ],
         ),
-        // Profile
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: RouteNames.profile,
               name: 'profile',
-              builder: (context, state) => const ProfilePage(),
+              builder: (_, __) => BlocProvider(
+                create: (_) => sl<ProfileCubit>()..loadProfile(),
+                child: const ProfilePage(),
+              ),
             ),
           ],
         ),
       ],
     ),
   ],
-
-  // ── Error page ─────────────────────────────────────────────────────────────
-  errorBuilder: (context, state) => Scaffold(
-    body: Center(
-      child: Text('Page not found: ${state.error}'),
-    ),
+  errorBuilder: (_, state) => Scaffold(
+    body: Center(child: Text('Page not found: ${state.error}')),
   ),
 );
 
-/// Bottom navigation shell.
 class _AppShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   const _AppShell({required this.navigationShell});
@@ -105,9 +140,9 @@ class _AppShell extends StatelessWidget {
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
-        onDestinationSelected: (index) => navigationShell.goBranch(
-          index,
-          initialLocation: index == navigationShell.currentIndex,
+        onDestinationSelected: (i) => navigationShell.goBranch(
+          i,
+          initialLocation: i == navigationShell.currentIndex,
         ),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),

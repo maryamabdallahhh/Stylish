@@ -1,0 +1,162 @@
+{
+  "@@locale": "en",
+
+  "appName": "Stylish",
+  "@appName": { "description": "The name of the application" },
+
+  "tagline": "Look Good, Feel Great",
+  "@tagline": { "description": "App tagline shown on splash/onboarding" },
+
+  "continueLabel": "Continue",
+  "skipLabel": "Skip",
+  "saveLabel": "Save",
+  "cancelLabel": "Cancel",
+  "deleteLabel": "Delete",
+  "editLabel": "Edit",
+  "closeLabel": "Close",
+  "retryLabel": "Retry",
+  "doneLabel": "Done",
+  "confirmLabel": "Confirm",
+
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "signOut": "Sign Out",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "password": "Password",
+  "passwordHint": "Enter your password",
+  "fullName": "Full Name",
+  "fullNameHint": "Enter your full name",
+  "forgotPassword": "Forgot Password?",
+  "resetPassword": "Reset Password",
+  "alreadyHaveAccount": "Already have an account? ",
+  "dontHaveAccount": "Don't have an account? ",
+  "orContinueWith": "Or continue with",
+  "loginWithGoogle": "Continue with Google",
+  "loginWithFacebook": "Continue with Facebook",
+  "welcomeBack": "Welcome Back!",
+  "createAccount": "Create Account",
+  "emailRequired": "Email is required",
+  "emailInvalid": "Enter a valid email address",
+  "passwordRequired": "Password is required",
+  "passwordTooShort": "Password must be at least 8 characters",
+  "nameRequired": "Name is required",
+
+  "home": "Home",
+  "search": "Search",
+  "cart": "Cart",
+  "wishlist": "Wishlist",
+  "profile": "Profile",
+  "orders": "Orders",
+  "categories": "Categories",
+  "notifications": "Notifications",
+
+  "searchHint": "Search products...",
+  "allCategories": "All Categories",
+  "featured": "Featured",
+  "newArrivals": "New Arrivals",
+  "flashSale": "Flash Sale",
+  "seeAll": "See All",
+  "topRated": "Top Rated",
+  "popular": "Popular",
+
+  "addToCart": "Add to Cart",
+  "buyNow": "Buy Now",
+  "addToWishlist": "Add to Wishlist",
+  "removeFromWishlist": "Remove from Wishlist",
+  "inStock": "In Stock",
+  "outOfStock": "Out of Stock",
+  "lowStock": "Only {count} left!",
+  "@lowStock": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "productDetails": "Product Details",
+  "reviews": "Reviews",
+  "reviewCount": "{count} reviews",
+  "@reviewCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "selectSize": "Select Size",
+  "selectColor": "Select Color",
+  "quantity": "Quantity",
+  "description": "Description",
+
+  "myCart": "My Cart",
+  "emptyCart": "Your cart is empty",
+  "emptyCartSubtitle": "Looks like you haven't added anything yet",
+  "shopNow": "Shop Now",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "discount": "Discount",
+  "total": "Total",
+  "proceedToCheckout": "Proceed to Checkout",
+  "removeItem": "Remove Item",
+  "itemCount": "{count, plural, =1{1 item} other{{count} items}}",
+  "@itemCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "checkout": "Checkout",
+  "shippingAddress": "Shipping Address",
+  "paymentMethod": "Payment Method",
+  "orderSummary": "Order Summary",
+  "placeOrder": "Place Order",
+  "addNewAddress": "Add New Address",
+  "creditCard": "Credit / Debit Card",
+  "cashOnDelivery": "Cash on Delivery",
+  "cardNumber": "Card Number",
+  "expiryDate": "Expiry Date",
+  "cvv": "CVV",
+  "cardHolder": "Card Holder Name",
+
+  "orderSuccess": "Order Placed!",
+  "orderSuccessMessage": "Your order has been placed successfully.",
+  "trackOrder": "Track Order",
+  "continueShopping": "Continue Shopping",
+  "myOrders": "My Orders",
+  "orderNumber": "Order #{id}",
+  "@orderNumber": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "orderStatus": "Status",
+  "orderDate": "Order Date",
+  "pending": "Pending",
+  "confirmed": "Confirmed",
+  "shipped": "Shipped",
+  "delivered": "Delivered",
+  "cancelled": "Cancelled",
+
+  "myProfile": "My Profile",
+  "editProfile": "Edit Profile",
+  "personalInfo": "Personal Information",
+  "myAddresses": "My Addresses",
+  "paymentMethods": "Payment Methods",
+  "settings": "Settings",
+  "helpCenter": "Help Center",
+  "termsAndConditions": "Terms & Conditions",
+  "privacyPolicy": "Privacy Policy",
+  "rateApp": "Rate the App",
+  "logout": "Log Out",
+  "logoutConfirm": "Are you sure you want to log out?",
+  "deleteAccount": "Delete Account",
+  "language": "Language",
+  "darkMode": "Dark Mode",
+  "notifications_settings": "Notifications",
+
+  "errorGeneral": "Something went wrong. Please try again.",
+  "errorNetwork": "No internet connection. Check your network.",
+  "errorServer": "Server error. Please try later.",
+  "errorUnauthorized": "Session expired. Please sign in again.",
+  "errorNotFound": "Page not found.",
+  "tryAgain": "Try Again",
+  "noResults": "No results found",
+  "noResultsSubtitle": "Try a different search term"
+}
